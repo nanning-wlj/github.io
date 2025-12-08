@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>王丽坚的个人作品集 | 南宁学院·数字经济专业</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="zy.css">
+    <style>
+        /* 为项目图片添加额外样式 */
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover .project-img img {
+            transform: scale(1.05);
+        }
+        
+        /* 项目图片容器样式 */
+        .project-img {
+            height: 200px;
+            overflow: hidden;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+        }
+        
+        /* 图标容器的备用样式 */
+        .project-img i {
+            font-size: 3rem;
+            color: #8a6d8c;
+        }
+        
+        /* 确保项目卡片高度一致 */
+        .project-card {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-content {
+            flex: 1;
+        }
+        
+        /* 新的柔和背景设计 */
+        body {
+            background-color: #f9f7f9;
+            color: #333;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #f5f3f7 0%, #e8e4f0 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(138, 109, 140, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.5;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        #about {
+            background: linear-gradient(135deg, #f8f4f9 0%, #f0ebf2 100%);
+            position: relative;
+        }
+        
+        #about::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23f9f7f9' fill-opacity='1' d='M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,138.7C672,128,768,160,864,176C960,192,1056,192,1152,181.3C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+            z-index: 0;
+        }
+        
+        .about-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        #skills {
+            background: linear-gradient(135deg, #f0f2f8 0%, #e8eaf2 100%);
+            position: relative;
+        }
+        
+        #skills::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%238a6d8c' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+            z-index: 0;
+        }
+        
+        .skills-container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        #projects {
+            background: linear-gradient(135deg, #f7f5f8 0%, #f0ecf2 100%);
+            position: relative;
+        }
+        
+        #projects::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(138, 109, 140, 0.03) 50%, transparent 70%);
+            background-size: 200% 200%;
+            animation: shimmer 8s infinite;
+            z-index: 0;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% -200%; }
+            100% { background-position: 200% 200%; }
+        }
+        
+        .projects-grid {
+            position: relative;
+            z-index: 1;
+        }
+        
+        #updates {
+            background: linear-gradient(135deg, #f9f7f9 0%, #f2eff5 100%);
+            position: relative;
+        }
+        
+        #updates::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%238a6d8c' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            z-index: 0;
+        }
+        
+        .timeline {
+            position: relative;
+            z-index: 1;
+        }
+        
+        #contact {
+            background: linear-gradient(135deg, #f5f3f7 0%, #ede9f2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #contact::before {
+            content: '';
+            position: absolute;
+            top: -10%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(138, 109, 140, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        #contact::after {
+            content: '';
+            position: absolute;
+            bottom: -10%;
+            left: -10%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(138, 109, 140, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .contact-container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* 为导航栏添加背景色 */
+        #header {
+            background: linear-gradient(135deg, #6c5b7b 0%, #8a6d8c 100%);
+            box-shadow: 0 4px 12px rgba(108, 91, 123, 0.15);
+        }
+        
+        /* 为页脚添加背景色 */
+        footer {
+            background: linear-gradient(135deg, #4a4453 0%, #6c5b7b 100%);
+        }
+        
+        /* 为标签添加柔和背景 */
+        .personal-tags .tag {
+            background: linear-gradient(135deg, #e8e4f0 0%, #d8d1e5 100%);
+            color: #555;
+            font-weight: 600;
+            border: 1px solid #d0c9db;
+        }
+        
+        /* 为技能条添加柔和背景 */
+        .skill-bar {
+            background-color: #e8e4f0;
+        }
+        
+        .skill-progress {
+            background: linear-gradient(90deg, #8a6d8c 0%, #a58faa 100%);
+        }
+        
+        /* 为项目卡片添加柔和边框 */
+        .project-card {
+            background-color: white;
+            border: 1px solid #e8e4f0;
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(138, 109, 140, 0.15);
+        }
+        
+        /* 为时间线添加柔和标记 */
+        .timeline-item::before {
+            background: linear-gradient(135deg, #8a6d8c 0%, #a58faa 100%);
+            box-shadow: 0 0 0 4px rgba(138, 109, 140, 0.1);
+        }
+        
+        /* 为联系表单按钮添加柔和背景 */
+        .cta-button {
+            background: linear-gradient(135deg, #8a6d8c 0%, #a58faa 100%);
+            border: none;
+            transition: all 0.3s ease;
+            color: white;
+        }
+        
+        .cta-button:hover {
+            background: linear-gradient(135deg, #a58faa 0%, #8a6d8c 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(138, 109, 140, 0.2);
+        }
+        
+        /* 为社交链接添加柔和背景 */
+        .social-link {
+            background: linear-gradient(135deg, #8a6d8c 0%, #a58faa 100%);
+            transition: all 0.3s ease;
+            color: white;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 12px rgba(138, 109, 140, 0.25);
+        }
+        
+        /* 为表单输入框添加样式 */
+        .form-group input, .form-group textarea {
+            background-color: #f9f7f9;
+            border: 1px solid #e8e4f0;
+            color: #555;
+        }
+        
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: #8a6d8c;
+            box-shadow: 0 0 0 3px rgba(138, 109, 140, 0.1);
+        }
+        
+        /* 为标题添加颜色 */
+        .section-title h2 {
+            color: #6c5b7b;
+        }
+        
+        /* 为技能名称添加颜色 */
+        .skill-name {
+            color: #555;
+        }
+        
+        /* 为项目标题添加颜色 */
+        .project-title {
+            color: #6c5b7b;
+        }
+        
+        /* 为技术标签添加样式 */
+        .tech-tag {
+            background-color: #f0ebf2;
+            color: #6c5b7b;
+            border: 1px solid #e0d6e5;
+        }
+        
+        /* 为个人简介区域添加柔和边框 */
+        .about-content {
+            background-color: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+        }
+        
+        /* 为导航链接添加样式 */
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .nav-links a:hover {
+            color: white;
+        }
+        
+        /* 为logo添加样式 */
+        .logo {
+            color: white;
+        }
+        
+        /* 为时间线日期添加样式 */
+        .timeline-date {
+            background-color: #8a6d8c;
+            color: white;
+        }
+        
+        /* 为联系信息项添加样式 */
+        .contact-item h3 {
+            color: #6c5b7b;
+        }
+        
+        .contact-icon {
+            background: linear-gradient(135deg, #8a6d8c 0%, #a58faa 100%);
+            color: white;
+        }
+        
+        /* 为统计项添加样式 */
+        .stat-item {
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            padding: 10px 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .stat-number {
+            color: #8a6d8c;
+        }
+        
+        .stat-label {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <!-- 主题切换按钮 -->
+    <div class="theme-toggle">
+        <button class="theme-btn light-theme-btn active" id="lightThemeBtn" title="浅色主题">
+            <i class="fas fa-sun"></i>
+        </button>
+        <button class="theme-btn pink-theme-btn" id="pinkThemeBtn" title="粉色主题">
+            <i class="fas fa-heart"></i>
+        </button>
+    </div>
+
+    <!-- 导航区域 -->
+    <header id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo"><i class="fas fa-leaf"></i>王丽坚</a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#about">关于我</a></li>
+                    <li><a href="#skills">技能展示</a></li>
+                    <li><a href="#projects">项目作品</a></li>
+                    <li><a href="#updates">最新动态</a></li>
+                    <li><a href="#contact">联系我</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 英雄/首页区域 -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="profile-img-container">
+                    <img src="王丽坚证件照.jpg" alt="丽坚" class="profile-img">
+                </div>
+                <h1>你好，我是王丽坚</h1>
+                <p>南宁学院数字经济专业大二学生 | 热爱生活，喜欢尝试新鲜事物</p>
+                <a href="#about" class="cta-button">了解更多</a>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">比赛项目</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">2</span>
+                        <span class="stat-label">社团活动</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">技能掌握</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我区域 -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>关于我</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>小小一部分的我</h3>
+                    <p>我是南宁学院数字经济专业的大二学生王丽坚。性格上，我兼具外向开朗与严谨细致的特质——既能快速融入团队，在小组项目和赛事中主动沟通协作、倾听多元想法；也能沉下心深耕细节，面对数据建模、经济数据分析等专业任务时，反复校验逻辑与结果，确保工作精准落地。</p>
+                    <p>专业学习中，我系统掌握数据分析、数字金融、区块链应用等核心课程，熟练使用Python、Excel等工具处理经济数据，成绩稳居专业前10%。实践层面，我曾组队参与"全国大学生数字经济创新大赛"，负责数据采集与模型搭建，和团队共同攻克数据源筛选、方案优化等难题，最终获得省级三等奖，积累了扎实的实战经验与团队协作能力。</p>
+                    <p>课余时间，我热衷关注数字经济行业动态，主动研读政策报告与前沿案例，自学数据分析进阶技能，不断拓宽知识边界。生活中我真诚友善、乐于助人，乐于分享学习心得，与同学建立了良好的互助关系。</p>
+                    <p>我始终对数字经济领域充满热情，希望能在相关岗位或项目中，将性格优势与专业技能相结合，踏实积累经验、精进能力，为行业发展贡献一份力量。感谢您的聆听！</p>
+                    
+                    <div class="personal-tags">
+                        <div class="tag">爱学习</div>
+                        <div class="tag">有创意</div>
+                        <div class="tag">积极向上</div>
+                        <div class="tag">建社名</div>
+                        <div class="tag">充分享受</div>
+                        <div class="tag">拓展自我</div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="王丽坚个性照片.jpg" alt="丽坚在南院" style="width:80%; border-radius: 12px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 技能展示区域 -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-title">
+                <h2>技能展示</h2>
+            </div>
+            <div class="skills-container">
+                <div class="skills-left">
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">经济学专业知识</span>
+                            <span class="skill-percent">90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="90"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">团队协作与沟通</span>
+                            <span class="skill-percent">85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="85"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">网页设计与开发</span>
+                            <span class="skill-percent">80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="80"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skills-right">
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">数据分析与处理</span>
+                            <span class="skill-percent">75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="75"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">活动策划与组织</span>
+                            <span class="skill-percent">88%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="88"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-header">
+                            <span class="skill-name">新媒体内容创作</span>
+                            <span class="skill-percent">82%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" data-width="82"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 项目作品区域 -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>项目作品</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img">
+                        <!-- 替换为实际项目图片 -->
+                        <img src="数字化教学资源平台网站布局.jpg" alt="数字化教学资源平台网站布局">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">数字化教学资源平台网站布局</h3>
+                        <p class="project-desc">使用HTML、CSS和Flex创建布局网站</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">Flex</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-img">
+                        <!-- 替换为实际项目图片 -->
+                        <img src="用户注册页面的设计.jpg" alt="用户注册页面设计">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">用户注册页面的设计</h3>
+                        <p class="project-desc">使用HTML、CSS以及LIversonServer</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                            <span class="tech-tag">LIversonServer</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-img">
+                        <!-- 替换为实际项目图片 -->
+                        <img src="ican创新创业大赛.png" alt="iCAN创新创业大赛证书">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">ican创新创业大赛</h3>
+                        <p class="project-desc">为提高自我的创新能力以及综合素养。</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">团队协作</span>
+                            <span class="tech-tag">产品销售</span>
+                            <span class="tech-tag">项目管理</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 最新动态区域 -->
+    <section id="updates">
+        <div class="container">
+            <div class="section-title">
+                <h2>最新动态</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025.11.23</div>
+                        <h3>完成期末作业</h3>
+                        <p>经过一周的努力，终于完成了这个个人网站项目。学习了很多网页设计知识点，很有成就感！</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025.11.26</div>
+                        <h3>参加社团活动</h3>
+                        <p>参加了学校的社团活动，认识了很多志同道合的朋友，收获满满。</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025.12.2</div>
+                        <h3>参加比赛</h3>
+                        <p>最近在参加一项省赛，虽然有些焦虑，但过程很有趣，期待有所收获。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系信息区域 -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>联系我</h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3>邮箱</h3>
+                            <p>2947250471@qq.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h3>电话</h3>
+                            <p>+86 195-4368-7895</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h3>地址</h3>
+                            <p>南宁学院，南宁市邕宁区</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#" class="social-link" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="social-link" title="微博">
+                            <i class="fab fa-weibo"></i>
+                        </a>
+                        <a href="#" class="social-link" title="微信">
+                            <i class="fab fa-weixin"></i>
+                        </a>
+                        <a href="#" class="social-link" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="您的姓名" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="您的邮箱" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="您的留言" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="cta-button">发送消息</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚区域 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <a href="#" class="logo" style="color: white;"><i class="fas fa-leaf"></i>丽坚的个人作品集</a>
+                <div class="footer-links">
+                    <a href="#home">首页</a>
+                    <a href="#about">关于我</a>
+                    <a href="#skills">技能展示</a>
+                    <a href="#projects">项目作品</a>
+                    <a href="#updates">最新动态</a>
+                    <a href="#contact">联系我</a>
+                </div>
+                <div class="copyright">
+                    &copy; 2025 丽坚的个人作品集. 保留所有权利. | 南宁学院数字经济专业
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <a href="#" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+    <script src="zy.js"></script>
+</body>
+</html>
